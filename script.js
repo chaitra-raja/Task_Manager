@@ -5,13 +5,13 @@ const progressText = document.getElementById("progressText");
 const progressCircle = document.querySelector(".progress-ring__circle");
 const confettiCanvas = document.getElementById("confetti");
 
-// --- NEW SELECTORS ---
+// --- NEW SELECTORS for Tabs and Stats ---
 const tabButtons = document.querySelectorAll(".tab-button");
 const tabContents = document.querySelectorAll(".tab-content");
 const statTotal = document.getElementById("statTotal");
 const statCompleted = document.getElementById("statCompleted");
 const statRate = document.getElementById("statRate");
-// ---------------------
+// ----------------------------------------
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 let dragStartIndex; // Global variable for drag-and-drop
@@ -77,7 +77,7 @@ function updateProgress() {
   }
 }
 
-// --- RENDER TASKS (UPDATED for IN-LINE EDITING and CURSOR FIX) ---
+// --- RENDER TASKS (With Drag-and-Drop and In-Line Editing) ---
 function renderTasks() {
   taskList.innerHTML = "";
   tasks.forEach((task, index) => {
@@ -106,7 +106,7 @@ function renderTasks() {
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edit";
     
-    // *** EDIT LOGIC ***
+    // *** EDIT LOGIC: In-Line Editing with CURSOR FIX ***
     editBtn.onclick = (event) => {
       event.stopPropagation();
       span.contentEditable = true;
@@ -145,13 +145,11 @@ function renderTasks() {
 function saveInlineEdit(event, index, newName) {
     event.stopPropagation();
     
-    // Ensure the new name is valid
     if (newName.trim() !== "") {
         tasks[index].name = newName.trim();
         saveTasks();
     }
     
-    // Re-render to update the display and reset the button/span
     renderTasks();
 }
 // ---------------------------------------
@@ -187,7 +185,7 @@ function deleteTask(index) {
 addBtn.addEventListener("click", addTask);
 input.addEventListener("keypress", e => e.key === "Enter" && addTask());
 
-// --- DRAG-AND-DROP FUNCTIONS (Unchanged) ---
+// --- DRAG-AND-DROP FUNCTIONS ---
 function handleDragStart(e) {
     dragStartIndex = +this.dataset.index;
     e.dataTransfer.effectAllowed = 'move';
