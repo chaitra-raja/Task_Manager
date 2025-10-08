@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Tracker 🔥</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <h1>🔥 Task Tracker</h1>
+
+    <div class="tabs">
+        <button class="tab-button active" data-tab="tasks">Tasks</button>
+        <button class="tab-button" data-tab="stats">Stats</button>
+    </div>
+
+    <div class="tab-content active" id="tasks">
+        <div class="task-input">
+            <input type="text" id="taskInput" placeholder="Add a new task..." />
+            <button id="addBtn">+</button>
+        </div>
+
+        <ul id="taskList">
+            </ul>
+        
+        <div class="progress-wrapper">
+            <svg class="progress-ring" width="120" height="120">
+                <circle class="progress-ring__background" cx="60" cy="60" r="50"></circle>
+                <circle class="progress-ring__circle" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <span id="progressText">0%</span>
+        </div>
+    </div>
+
+    <div class="tab-content" id="stats">
+        <h2>📊 Statistics</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Tasks</h3>
+                <p id="statTotal">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Completed Tasks</h3>
+                <p id="statCompleted">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Completion Rate</h3>
+                <p id="statRate">0%</p>
+            </div>
+        </div>
+        <canvas id="taskHistoryChart"></canvas>
+    </div>
+  </div>
+
+  <canvas id="confetti"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>

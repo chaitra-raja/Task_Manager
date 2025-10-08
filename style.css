@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at top left, #1a0000, #000);
+  color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* --- Creative: Background Fire Aura Effect --- */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Creates a subtle, central "hot spot" */
+  background: radial-gradient(circle at center, rgba(255, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 60%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* --- New: Subtle Animation for the app border/box-shadow --- */
+.app {
+  background: rgba(255, 0, 0, 0.05);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 20px;
+  padding: 25px;
+  width: 350px;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  /* Add animation to make the shadow "breathe" */
+  animation: auraGlow 4s infinite alternate ease-in-out;
+}
+
+@keyframes auraGlow {
+  from {
+    box-shadow: 0 0 20px rgba(255, 50, 50, 0.3), 0 0 5px rgba(255, 0, 0, 0.5);
+  }
+  to {
+    box-shadow: 0 0 40px rgba(255, 50, 50, 0.5), 0 0 10px rgba(255, 0, 0, 0.7);
+  }
+}
+/* ----------------------------------------------------------- */
+
+h1 {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #ff2e2e;
+}
+
+.task-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+button {
+  width: 45px;
+  border: none;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  background: #ff2e2e;
+  color: #000;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: #ff5555;
+  transform: scale(1.05);
+}
+
+/* --- Creative: Button Feedback Effect --- */
+button.fire-up {
+    /* Temporarily scale up */
+    transform: scale(1.2); 
+    /* Add a quick shadow burst */
+    box-shadow: 0 0 10px #ff2e2e, 0 0 20px #ff2e2e;
+    transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  transition: 0.3s;
+  /* Drag-and-Drop Style */
+  cursor: grab;
+}
+
+li.completed span {
+  text-decoration: line-through;
+  color: #888;
+}
+
+li span {
+  flex: 1;
+  cursor: pointer;
+}
+
+li .actions {
+  display: flex;
+  gap: 5px;
+}
+
+li .actions button {
+  width: auto;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid #ff2e2e;
+  color: #ff2e2e;
+}
+
+li .actions button:hover {
+  background: #ff2e2e;
+  color: #000;
+}
+
+.progress-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 25px auto 0;
+}
+
+.progress-ring__background {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 8;
+}
+
+.progress-ring__circle {
+  fill: none;
+  stroke: #ff2e2e;
+  stroke-width: 8;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  stroke-dasharray: 314;
+  stroke-dashoffset: 314;
+  transition: stroke-dashoffset 0.4s ease;
+}
+
+#progressText {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+  font-weight: 600;
+  color: #ff2e2e;
+}
+
+.glow {
+  filter: drop-shadow(0 0 10px #ff2e2e) drop-shadow(0 0 20px #ff4444);
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform: rotate(-90deg) scale(1); }
+  to { transform: rotate(-90deg) scale(1.05); }
+}
+
+#confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* --- New Tab Styles --- */
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 0, 0, 0.3);
+}
+
+.tab-button {
+    flex-grow: 1;
+    border: none;
+    padding: 10px 15px;
+    background: transparent;
+    color: #ff5555;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 0;
+    transition: color 0.3s;
+}
+
+.tab-button.active {
+    color: #fff;
+    border-bottom: 3px solid #ff2e2e;
+}
+
+/* FIX FOR TAB BUTTON HOVER */
+.tab-button:hover {
+  /* Override generic button styles */
+  background: transparent;
+  transform: scale(1); 
+  color: #fff;
+}
+
+/* Hide inactive content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* --- Stats Grid Styles --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: rgba(255, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stat-card h3 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    color: #ff2e2e;
+}
+
+.stat-card p {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* --- Drag-and-Drop Styles --- */
+li.dragging {
+    opacity: 0.4;
+    transform: scale(0.98);
+    background: rgba(255, 2, 2, 0.4);
+}
